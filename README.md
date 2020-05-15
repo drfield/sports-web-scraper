@@ -1,5 +1,5 @@
 # sports-web-scraper
-This is a repository for roster, stat and live score web scrapers.
+This is a repository for roster, stat and live score web scrapers. This is a work in progress. I don't have a lot of programming experience. I'll add exception handling and intergrate additional options as I'm able.
 
 This project was started on python in Jupyter Notebooks. I've included exported python files for each of the initial functioning scrapers.
 
