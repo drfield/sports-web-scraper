@@ -206,7 +206,66 @@ new_df = df.drop(["Hometown","Highschool"], axis=1)
 # Rearrange Dataframe column order if necessary
 new_df = new_df[['Jersey No.', 'First', 'Last', 'POS', 'Year', 'Height', 'Weight', 'Town', 'State']]
 
-new_df
+# Use 'Jersey No.' as index for dataframe
+roster_indexed = new_df.set_index('Jersey No.')
+
+# Create a dictionary with the AP Style and Postal abbreviations for states
+states_dict = {'Ala.': 'AL',
+  'Alaska': 'AK',
+  'Ariz.': 'AZ',
+  'Ark.': 'AR',
+  'Calif.': 'CA',
+  'Colo.': 'CO',
+  'Conn.': 'CT',
+  'Del.': 'DE',
+  'Fla.': 'FL',
+  'Ga.': 'GA',
+  'Hawaii': 'HI',
+  'Idaho': 'ID',
+  'Ill.': 'IL',
+  'Ind.': 'IN',
+  'Iowa': 'IA',
+  'Kan.': 'KS',
+  'Ky.': 'KY',
+  'La.': 'LA',
+  'Maine': 'ME',
+  'Md.': 'MD',
+  'Mass.': 'MA',
+  'Mich.': 'MI',
+  'Minn.': 'MN',
+  'Miss.': 'MS',
+  'Mo.': 'MO',
+  'Mont.': 'MT',
+  'Neb.': 'NE',
+  'Nev.': 'NV',
+  'N.H.': 'NH',
+  'N.J.': 'NJ',
+  'N.M.': 'NM',
+  'N.Y.': 'NY',
+  'N.C.': 'NC',
+  'N.D.': 'ND',
+  'Ohio': 'OH',
+  'Okla.': 'OK',
+  'Ore.': 'OR',
+  'Pa.': 'PA',
+  'R.I.': 'RI',
+  'S.C.': 'SC',
+  'S.D.': 'SD',
+  'Tenn.': 'TN',
+  'Texas': 'TX',
+  'Utah': 'UT',
+  'Vt.': 'VT',
+  'Va.': 'VA',
+  'Wash.': 'WA',
+  'W. Va.': 'WV',
+  'Wis.': 'WI',
+  'Wyo.': 'WY'}
+
+# Replace the AP style state abbreviations in the State column with the postal abbreviation using the states_dict dictionary
+final_roster_df = roster_indexed.replace({'State': states_dict}, regex=True)
+
+# Print final_roster_df to check. Can be commented out
+final_roster_df
 
 
 # # Export the DataFrame.
@@ -215,5 +274,5 @@ new_df
 # In[ ]:
 
 
-new_df.to_csv(r'D:\From_HOME\UNC_MLAX_Roster_Test.csv',na_rep='Unknown')
+final_roster_df.to_csv(r'D:\From_HOME\UNC_MLAX_Roster_Test.csv',na_rep='Unknown')
 
